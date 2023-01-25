@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  dev-db:
+    image:  mysql:8.0.31-debian
+    # command: --default-authentication-plugin=mysql_native_password
+    pull_policy: never
+    ports:
+      - 3306:33060
+    env_file:
+      - .env
+
+    networks:
+      - wallets
+
+  test-db:
+    image:  mysql:8.0.31-debian
+    # command: --default-authentication-plugin=mysql_native_password
+    pull_policy: never
+    ports:
+      - 3307:33060
+    env_file:
+      - .env.test
+    networks:
+      - wallets
+
+networks:
+  wallets:
